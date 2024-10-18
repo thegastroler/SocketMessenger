@@ -95,6 +95,7 @@ Enter username:
 > Marsel
 Enter password:
 > qwerty007
+> Authentication success!
 1.	Create room
 2.	Choose room
 3.	Exit
@@ -110,23 +111,21 @@ JavaMan: Hello!
 > Hello!
 Marsel: Hello!
 > Exit
+Rooms:
+1. First Room
+2. SimpleRoom
+3. JavaRoom
+4. Exit
+> 4
+1.	Create room
+2.	Choose room
+3.	Exit
+> 3
 You have left the chat.
 ```
 
-Все сообщения передаются в формате JSON для более гибкого взаимодействия клиента и сервера. Сообщение может содержать такие поля, как текст сообщения, отправитель, комната и время отправки.
-
-Пример JSON-сообщения:
-```JSON
-{
-  "message" : "Hello!",
-  "fromId" : 4,
-  "roomId": 10
-}
-```
-
 **Требования к реализации**:
-- Сообщения передаются в формате JSON.
-- Сервер обрабатывает команды пользователей, поступающие в формате JSON.
+- Сервер обрабатывает команды пользователей в отдельном потоке для каждого пользователя.
 - Для каждой комнаты хранится история сообщений.
 
 ## Технологии
@@ -144,16 +143,18 @@ You have left the chat.
     ```
     cd SocketServer
     mvn clean install
-    java -jar target/socket-server.jar --port=8081
+    java -jar target/SocketServer-1.0-SNAPSHOT-jar-with-dependencies.jar --port=8081
     ```
 
 2. **Сборка клиентского приложения**:
     ```
     cd SocketClient
     mvn clean install
-    java -jar target/socket-client.jar --server-port=8081
+    java -jar target/SocketClient-1.0-SNAPSHOT-jar-with-dependencies.jar --port=8081
     ```
 
 ## Заключение
 
-Этот проект демонстрирует принципы работы с сокетами, многопользовательские системы и концепцию комнат чатов. В проекте используются современные практики хранения данных и безопасного обращения с учетными данными пользователей.
+Этот проект демонстрирует принципы работы с сокетами, многопользовательские системы и 
+концепцию комнат чатов. В проекте используются современные практики хранения данных и 
+безопасного обращения с учетными данными пользователей.
